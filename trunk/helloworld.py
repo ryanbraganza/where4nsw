@@ -25,6 +25,7 @@ class MainPage(webapp.RequestHandler):
             url_linktext = 'Login'
 
         template_values = {
+            'title': 'Welcome',
             'greetings': greetings,
             'url': url,
             'url_linktext': url_linktext,
