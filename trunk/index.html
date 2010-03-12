@@ -1,18 +1,26 @@
 {% extends "templates/default.html" %}
 {% block content %}
-    {% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.author.nickname }}</b> wrote:
-      {% else %}
-       An anonymous person wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content|escape }}</blockquote>
-    {% endfor %}
 
-    <form action="/sign" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
+<div id="main">
+  <div id="a">
+    <div id="ai" class="header"><p class="clickable">head</p></div>
+    <div id="aii">asdfasdfsdaifajslvjdsl fsdljfasd fsalijd fa</div>
+  </div>
+  <div id="b">
+    <div id="bi" class="header"><p class="clickable">head</p></div>
+    <div id="bii">asdfajsdfasdfxcbvadsfsdf</div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(
+function(){
+  $('#aii').hide();
+  $('#bii').hide();
+  $('#ai').click(function(){$('#aii').show('slow');$('#bii').hide('slow');});
+  $('#bi').click(function(){$('#bii').show('slow');$('#aii').hide('slow');});
 
-    <a href="{{ url }}">{{ url_linktext }}</a>
+
+});
+
+</script>
 {% endblock %}

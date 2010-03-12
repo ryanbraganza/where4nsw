@@ -1,4 +1,14 @@
+.clickable {
+  cursor: pointer;
+}
+
 body {
   font-family: Verdana, Helvetica, sans-serif;
   background-color: #DDDDDD;
+}
+
+.header {
+  font-color: #00F;
+  font-family: monospace;
+  background-color: #AAD;
 }
