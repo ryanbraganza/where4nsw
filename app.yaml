@@ -4,6 +4,10 @@ runtime: python
 api_version: 1
 
 handlers:
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: imgaes/favicon.ico
+
 - url: /stylesheets
   static_dir: stylesheets
 
@@ -13,8 +17,11 @@ handlers:
 - url: /images
   static_dir: images
 
-- url: /.*
-  script: controllers/helloworld.py
+- url: /ajax*
+  script: controllers/ajax.py
 
 - url: /remote_api
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+
+- url: /.*
+  script: controllers/helloworld.py
