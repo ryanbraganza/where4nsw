@@ -1,0 +1,5 @@
+#google maps api key for where4nsw.appspot.com
+ABQIAAAApY3ccPJ0I9K9lqw-WO9LthTicUeM37d-pz1QjgRUkW5uT4Hr6RQ1_ZF5jEAXzhK12hMRY_krYbr2bA
+
+#http://localhost
+ABQIAAAApY3ccPJ0I9K9lqw-WO9LthT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSaSiTvGa2_0auDWJKF8BOlm5hh4g
