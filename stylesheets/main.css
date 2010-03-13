@@ -1,14 +1,45 @@
 .clickable {
   cursor: pointer;
 }
+img {
+}
 
 body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#banner {
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  float: right;
+  margin-right: 5px;
+}
+
+.main {
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  min-width: 800px;
   font-family: Verdana, Helvetica, sans-serif;
-  background-color: #DDDDDD;
+  background-color: #DDD;
 }
 
 .header {
+  cursor: pointer;
   font-color: #00F;
   font-family: monospace;
   background-color: #AAD;
+  margin-right; 2px;
 }
+
+.footer {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+}
+

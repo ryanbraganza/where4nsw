@@ -1,9 +1,12 @@
+<!DOCTYPE HTML>
 <html>
   {% include "templates/header.html" %}
   <body>
-      <div id="main">
-        {% block content %}
-        {% endblock %}
-        </div>
-    </body>
+    <div id="main" class="main">
+      {% include "templates/banner.html" %}
+      {% block content %}
+      {% endblock %}
+      {% include "templates/footer.html" %}
+    </div>
+  </body>
 </html>
