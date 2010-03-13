@@ -2,22 +2,33 @@
 {% block content %}
 
 <div id="a">
-  <div id="ai" class="header"><span class="clickable">head</span></div>
-  <div id="aii">asdfasdfsdaifajslvjdsl fsdljfasd fsalijd fa</div>
+  <div id="ai" class="bar"><span class="clickable">Row A</span></div>
+  <div id="aii" class="bucket">asdfasdfsdaifajslvjdsl fsdljfasd fsalijd fa</div>
 </div>
 <div id="b">
-  <div id="bi" class="header"><span class="clickable">head</span></div>
-  <div id="bii">asdfajsdfasdfxcbvadsfsdf</div>
+  <div id="bi" class="bar"><span class="clickable">Row B</span></div>
+  <div id="bii" class="bucket">asdfajsdfasdfxcbvadsfsdf</div>
 </div>
+<div>
+  <div id='mapi' class="bar"><span class="clickable">Map</span></div>
+  <div id="map_canvas" class="bucket" style="width: 100%; height: 400px"></div>
+  
 <script type="text/javascript">
 $(document).ready(
 function(){
-  $('#aii').hide();
-  $('#bii').hide();
-  $('#ai').click(function(){$('#aii').show('slow');$('#bii').hide('slow');});
-  $('#bi').click(function(){$('#bii').show('slow');$('#aii').hide('slow');});
+  $('.bucket').hide();
+  $('#ai').data('rel','#aii');
+  $('#bi').data('rel','#bii');
+  $('#mapi').data('rel','#map_canvas');
+  $('.bar').click(function(){
+    var selector = jQuery(this).data('rel');
+    $(selector).toggle('slow');
+  });
 
-
+});
+$(window).unload(
+function(){
+  GUnload();
 });
 
 </script>

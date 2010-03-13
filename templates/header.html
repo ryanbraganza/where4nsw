@@ -1,5 +1,20 @@
 <head>
 <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" />
 <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAApY3ccPJ0I9K9lqw-WO9LthT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSaSiTvGa2_0auDWJKF8BOlm5hh4g" type="text/javascript"></script>
+    <script type="text/javascript">
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        var zoomLevel = 13;
+        var sydneyCoords = new GLatLng(-33.859972, 151.21111);
+        map.setCenter(sydneyCoords, zoomLevel);
+        map.setUIToDefault();
+      }
+    }
+  jQuery(document).ready(function(){initialize();});
+
+    </script>
+
 <title>{{ title }}</title>
 </head>
