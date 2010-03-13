@@ -29,17 +29,15 @@ body {
   background-color: #DDD;
 }
 
-.header {
+.bar{
   cursor: pointer;
-  font-color: #00F;
+  color: #003;
   font-family: monospace;
   background-color: #AAD;
-  margin-right; 2px;
 }
 
 .footer {
-  position: absolute;
-  right: 10%;
+  float: right;
   bottom: 0;
 }
 
