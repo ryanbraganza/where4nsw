@@ -6,7 +6,7 @@ api_version: 1
 handlers:
 - url: /favicon.ico
   static_files: images/favicon.ico
-  upload: imgaes/favicon.ico
+  upload: images/favicon.ico
 
 - url: /stylesheets
   static_dir: stylesheets
@@ -17,7 +17,7 @@ handlers:
 - url: /images
   static_dir: images
 
-- url: /ajax*
+- url: /ajax.*
   script: controllers/ajax.py
 
 - url: /remote_api
