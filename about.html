@@ -23,14 +23,13 @@ function(){
   $('#bi').data('rel','#bii');
   $('#mapi').data('rel','#map_canvas');
   $('.bar').click(function(){
-    var selector = jQuery(this).data('rel');
-    $(selector).toggle('slow');
+    $(this).next('.bucket').toggle('slow');
   });
 
 });
 $(window).unload(
 function(){
-  GUnload();
+  GUnload(); //no memory leak for gmaps
 });
 
 </script>

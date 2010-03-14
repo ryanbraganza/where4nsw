@@ -15,6 +15,7 @@ class MainPage(webapp.RequestHandler):
     template_values = {
         'title': 'Welcome',
         'url': url,
+        'map': True,
         'url_linktext': url_linktext,
         }
 

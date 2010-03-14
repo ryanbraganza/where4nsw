@@ -2,6 +2,9 @@
   cursor: pointer;
 }
 img {
+  border: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 body {
@@ -33,6 +36,7 @@ body {
   cursor: pointer;
   color: #003;
   font-family: monospace;
+  font-size: x-large;
   background-color: #AAD;
 }
 
@@ -41,3 +45,14 @@ body {
   bottom: 0;
 }
 
+/* FAQ */
+.question, li {
+  font-weight: bold;
+}
+.question {
+  cursor: pointer;
+}
+.answer {
+  font-family: serif;
+  font-weight: normal;
+}

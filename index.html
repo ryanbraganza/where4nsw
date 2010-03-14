@@ -18,15 +18,12 @@
 <script type="text/javascript">
 $(document).ready(
 function(){
+  initialize();//gmaps initialize
   $('.bucket').hide();
-  $('#ai').data('rel','#aii');
-  $('#bi').data('rel','#bii');
-  $('#mapi').data('rel','#map_canvas');
+  $('#map_canvas').show();
   $('.bar').click(function(){
-    var selector = jQuery(this).data('rel');
-    $(selector).toggle('slow');
+    $(this).next('.bucket').toggle('slow');
   });
-
 });
 $(window).unload(
 function(){

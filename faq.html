@@ -1,16 +1,62 @@
 {% extends "templates/default.html" %}
 {% block content %}
 
-<div id="a">
+<div id="a" style="padding-bottom: 1px;">
   <div id="ai" class="bar"><span>Frequenly Asked Questions</span></div>
   <div id="aii" class="bucket">
     <ol>
       <li>
-        <strong>Q1. Lol?</strong> 
-        <p> yes
+        <div class="question">When was this built?</div>
+        <div class="answer">
+          This application was built in March 2010 for submission in the apps4NSW competition.
       </li>
+      <li>
+        <span class="question">What is this used for?</span> 
+        <div class="answer"> Where4NSW is a web-application for finding areas you might want to live.
+            You can find areas by population, climate, fire danger and much more!
+        </div>
+      </li>
+      <li>
+        <span class="question">What technologies are used?</span>
+        <div class="answer">
+          jQuery is used for display/layout.
+          google project hosting is used for subversion repository
+          google app engine is used for deployment
+        </div>
+      </li>
+      <li>
+        <span class="question">What license?</span>
+        <div class="answer">
+          GPL version 3
+        </div>
+      </li>
+      <li>
+        <div class="question">What is the need being served?</div>
+        <div class="answer">
+          finding suitable neighbourhoods to live
+        </div>
+      </li>
+      <li>
+        <div class="question">What is the motivation behind the user interface design?</div>
+        <div class="answer">
+          The application is designed using standards-compliant HTML/CSS for accessibility.
+          All of the functionality is on one page, so navigation is not a problem.
+          No frustrating signup is required.
+        </div>
+      </li>
+      <li><div class="question">Does it scale?</div></li>
+      <li><div class="question">Is it original?</div></li>
+      <li><div class="question">Is it extensible/reusable?</div></li>
     </ol>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.question').click(function(){
+    $(this).next('.answer').toggle();
+  });
+});
+</script>
   
 {% endblock %}
