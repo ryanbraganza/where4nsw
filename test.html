@@ -1,0 +1,18 @@
+<html>
+  {% include "templates/header.html" %}
+<body>
+
+</body>
+<script type="text/javascript">
+var url = '/ajax'
+var data = {'foo': 'bar', 1: 3, 'abcd':{3:4}}
+function callback(data, textStatus, xmlHttpRequest){
+
+  var it = JSON.parse(data);
+  for (var key in it) {
+    alert(key + ' ' + it[key]);
+  }
+}
+$.get(url, JSON.stringify(data), callback);
+</script>
+</html>
