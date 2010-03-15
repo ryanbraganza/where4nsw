@@ -2,6 +2,8 @@ import cgi
 import logging
 import os
 
+from data.models import *
+
 from django.utils import simplejson
 
 from google.appengine.ext.webapp import template
@@ -30,9 +32,29 @@ class Test(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), '../test.html')
     self.response.out.write(template.render(path, {}))
 
+class ListLocations(webapp.RequestHandler):
+  def get(self):
+    logging.info('listing locations')
+    l = Location()
+    l.name='ryan'
+    l.put()
+    output = ''
+    locations = self.locs()
+    for loc in locations:
+      output += loc.name
+      output += '\n'
+    
+    self.response.out.write(output)
+
+  def locs(self):
+    locations = db.GqlQuery('select * from Location')
+    return locations
+
+
 application = webapp.WSGIApplication(
                                      [('/ajax', Ajax),
-                              ('/ajaxtest', Test)
+                              ('/ajaxtest', Test),
+                              ('/ajaxlocations', ListLocations),
                                           ],
                                      debug=True)
 
