@@ -24,4 +24,4 @@ handlers:
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
 
 - url: /.*
-  script: controllers/helloworld.py
+  script: controllers/controller.py
