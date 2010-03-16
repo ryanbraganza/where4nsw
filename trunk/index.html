@@ -14,8 +14,8 @@
   </div>
 </div>
 <div id="b">
-  <div id="bi" class="bar"><span class="clickable">Row B</span></div>
-  <div id="bii" class="bucket">asdfajsdfasdfxcbvadsfsdf</div>
+  <div id="bi" class="bar"><span class="clickable">Results</span></div>
+  <div id="bii" class="bucket">Results will appear here</div>
 </div>
 <div>
   <div id='mapi' class="bar"><span class="clickable">Map</span></div>
@@ -31,8 +31,26 @@ function(){
     $(this).next('.bucket').toggle('slow');
   });
   $('#searchForm').show();
+
+  var geocoder = new GClientGeocoder();
+  function showAddress(addr){
+    function callback(point){
+      if (!point){
+        alert('sorry, not found');
+      } else {
+        alert('found ' + addr);
+        map.setCenter(point, 13);
+      }
+    }
+    geocoder.getLatLng(addr, callback);
+  }
   
   function successFunc(data){
+    data = JSON.parse(data)
+    if (data.length>0)
+    {
+      showAddress(data[0] + ', NSW');
+    }
     alert(data);
   }
   function ajaxSubmit(){
