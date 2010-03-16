@@ -66,7 +66,7 @@ class Search(webapp.RequestHandler):
                             """, minPrice, maxPrice)
     names = []
     for loc in locations:
-      names.append(loc.name + ' ' + str(loc.nonstrata_median_price))
+      names.append(loc.name)# + ' ' + str(loc.nonstrata_median_price))
     self.response.out.write(simplejson.dumps(names))
 
 application = webapp.WSGIApplication([('/ajax', Ajax),
