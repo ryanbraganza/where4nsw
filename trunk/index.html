@@ -2,9 +2,15 @@
 {% block content %}
 
 <div id="a">
-  <div id="ai" class="bar"><span class="clickable">Row A</span></div>
-  <div id="aii" class="bucket">
-    lol
+  <div id="ai" class="bar"><span class="clickable">Search</span></div>
+  <div id="searchForm" class="bucket">
+    <form>
+      <label for="minPrice">minimum price ('000)</label>
+        <input id="minPrice" type="text" />
+      <label for="maxPrice">maximum price ('000)</label>
+        <input id="maxPrice" type="text" />
+      <input type="submit" id="search" value="Search" />
+    </form>
   </div>
 </div>
 <div id="b">
@@ -23,6 +29,31 @@ function(){
   $('#map_canvas').show();
   $('.bar').click(function(){
     $(this).next('.bucket').toggle('slow');
+  });
+  $('#searchForm').show();
+  
+  function successFunc(data){
+    alert(data);
+  }
+  function ajaxSubmit(){
+    var data = {};
+    var url = '/ajaxSearch';
+    var minPrice = $('#minPrice').val();
+    var maxPrice = $('#maxPrice').val();
+    data['minPrice']= minPrice;
+    data['maxPrice']= maxPrice;
+    $.get(url, JSON.stringify(data), successFunc);
+  }
+  function validate(){
+    return true; //TODO
+  }
+  $('#searchForm').submit(function(){
+    if (validate()) {
+      ajaxSubmit();
+    } else {
+
+    }
+    return false;
   });
 });
 $(window).unload(

@@ -1,4 +1,4 @@
-"suburb","strata","Non-strata"
+"name","strata","nonstrata"
 "Ashfield",350,674
 "Auburn",340,433
 "Bankstown",268,420
@@ -17,21 +17,21 @@
 "Hawkesbury",240,371
 "Holroyd",270,390
 "Hornsby",373,625
-"Hunters Hill",534,"1,035"
+"Hunters Hill",534,1035
 "Hurstville",340,560
 "Kiama",354,440
 "Kogarah",380,740
-"Ku-ring-gai",585,"1,050"
+"Ku-ring-gai",585,1050
 "Lake Macquarie",300,315
-"Lane Cove",391,"1,060"
+"Lane Cove",391,1060
 "Leichhardt",545,772
 "Liverpool",245,380
 "Maitland",273,290
-"Manly",579,"1,240"
+"Manly",579,1240
 "Marrickville",331,613
-"Mosman",523,"2,063"
+"Mosman",523,2063
 "Newcastle",294,320
-"North Sydney",530,"1,120"
+"North Sydney",530,1120
 "Parramatta",319,447
 "Penrith",239,325
 "Pittwater",548,885
@@ -44,9 +44,8 @@
 "Sutherland",371,590
 "Sydney",458,723
 "Warringah",431,801
-"Waverley",523,"1,310"
-"Willoughby",498,"1,019"
-"Wollondilly",,371
+"Waverley",523,1310
+"Willoughby",498,1019
 "Wollongong",290,362
-"Woollahra",600,"1,415"
+"Woollahra",600,1415
 "Wyong",254,295

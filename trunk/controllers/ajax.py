@@ -1,6 +1,7 @@
 import cgi
 import logging
 import os
+import urllib
 
 from data.models import *
 
@@ -50,12 +51,29 @@ class ListLocations(webapp.RequestHandler):
     locations = db.GqlQuery('select * from Location')
     return locations
 
+class Search(webapp.RequestHandler):
+  def get(self):
+    encodedOptions = urllib.unquote(self.request.query_string)
+    options = simplejson.loads(encodedOptions)
+    minPrice = int(options['minPrice'])
+    logging.info(minPrice)
+    maxPrice = int(options['maxPrice'])
+    logging.info(maxPrice)
+ 
+    locations = db.GqlQuery("""select * from Location where
+                             nonstrata_median_price >= :1 and
+                             nonstrata_median_price <= :2 
+                            """, minPrice, maxPrice)
+    names = []
+    for loc in locations:
+      names.append(loc.name + ' ' + str(loc.nonstrata_median_price))
+    self.response.out.write(simplejson.dumps(names))
 
-application = webapp.WSGIApplication(
-                                     [('/ajax', Ajax),
-                              ('/ajaxtest', Test),
-                              ('/ajaxlocations', ListLocations),
-                                          ],
+application = webapp.WSGIApplication([('/ajax', Ajax),
+                                      ('/ajaxtest', Test),
+                                      ('/ajaxlocations', ListLocations),
+                                      ('/ajaxSearch', Search),
+                                      ],
                                      debug=True)
 
 def main():
