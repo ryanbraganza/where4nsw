@@ -19,9 +19,6 @@ class Ajax(webapp.RequestHandler):
     for arg in self.request.arguments():
       logging.info(arg + ': ' + str(self.request.get_all(arg)))
 
-    url = None
-    url_linktext = None
-
     obj = {1:2, 'abcd': True}
 
     path = os.path.join(os.path.dirname(__file__), '../index.html')
@@ -36,14 +33,14 @@ class Test(webapp.RequestHandler):
 class ListLocations(webapp.RequestHandler):
   def get(self):
     logging.info('listing locations')
-    l = Location()
-    l.name='ryan'
-    l.put()
     output = ''
     locations = self.locs()
+    fmt = "%s %s %s %s %s"
     for loc in locations:
-      output += loc.name
-      output += '\n'
+      output += fmt % (loc.name, loc.strata_median_price,
+                       loc.nonstrata_median_price, loc.percentRise,
+                       loc.url)
+      output += '<br/>\n'
     
     self.response.out.write(output)
 
@@ -64,10 +61,14 @@ class Search(webapp.RequestHandler):
                              nonstrata_median_price >= :1 and
                              nonstrata_median_price <= :2 
                             """, minPrice, maxPrice)
-    names = []
+    stuff = []
     for loc in locations:
-      names.append(loc.name)# + ' ' + str(loc.nonstrata_median_price))
-    self.response.out.write(simplejson.dumps(names))
+      item = {}
+      item['name'] = loc.name
+      item['price'] = loc.nonstrata_median_price
+      item['url'] = loc.url
+      stuff.append(item)
+    self.response.out.write(simplejson.dumps(stuff))
 
 application = webapp.WSGIApplication([('/ajax', Ajax),
                                       ('/ajaxtest', Test),
