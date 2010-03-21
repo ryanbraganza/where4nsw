@@ -12,7 +12,7 @@
   <div id="searchForm" class="bucket">
     <form>
       <label for="minPrice">minimum price ('000)</label>
-        <input id="minPrice" type="text" value="0"/>
+        <input id="minPrice" type="text" value="100"/>
       <label for="maxPrice">maximum price ('000)</label>
         <input id="maxPrice" type="text" value="300"/>
       <input type="submit" id="search" value="Search" />
@@ -21,7 +21,13 @@
 </div>
 <div id="results_main">
   <div id="bi" class="bar"><span class="clickable">Results</span></div>
-  <div id="results" class="bucket">Results will appear here</div>
+  <div id="results_sub" class="bucket">
+    <div id="results_info">
+    </div>
+    <div id="results">
+      Results will appear here.
+    </div>
+  </div>
 </div>
 <div id="map_main">
   <div id='mapi' class="bar"><span class="clickable">Map</span></div>
@@ -58,10 +64,6 @@ function(){
         }
         marker = new GMarker(point);
           var html = "<div>" + addr + "</div>";
-//        GEvent.addListener(marker, "click", function() {
-//          var html = "<div>showing: " + addr + "</div>";
-//          marker.openInfoWindowHtml(html);
-//        });
         map.addOverlay(marker);
         marker.openInfoWindowHtml(html);
         map.setCenter(point, 13);
@@ -83,21 +85,21 @@ function(){
     var show = '<ul>';
     for (var i=0; i < data.length; i++)
     {
-      var showOnMap = '<span class="clickable" id="'+data[i].name+'">' + data[i].name + '</span>';
-      jQuery('#'+data[i].name).live('click',function(){
+      var name = data[i].name;
+      var showOnMap = '<span class="clickable" id="'+name+'">' +name + '</span>';
+      jQuery('#'+name).live('click',function(){
         log('clicked: ' + $(this));
         showAddress($(this).attr('id') + ', NSW');
       });
-      show += '<li>' + data[i].name;
+      show += '<li>' + '<span title="Show on map" class="clickable" id="' + name+'">' + name + '</span';
       show += ' price: $' + data[i].price*1000;
-      show += '<a href="' + data[i].url + '">' + 'website</a>';
-      show += showOnMap;
+      show += '<a href="' + data[i].url + '">' + ' Visit the website</a>';
     }
     show += '</ul>';
     log(show);
     
     $('#results').html(show);
-    $('#results').show('slow');
+    $('#results_sub').show('slow');
   }
 
   function ajaxSubmit(){
@@ -107,6 +109,10 @@ function(){
     var maxPrice = $('#maxPrice').val();
     data['minPrice']= minPrice;
     data['maxPrice']= maxPrice;
+    var html = 'You searched for Local Government Areas with '
+      + 'a minimum price of $' + minPrice + ',000 '
+      + 'and a maximum price of $' + maxPrice + ',000.';
+    $('#results_info').html(html);
     $.get(url, JSON.stringify(data), successFunc);
   }
   function validate(){
