@@ -1,13 +1,14 @@
 """
 models for where4nsw
 """
-from google.appengine.ext.db import Model
+from google.appengine.ext.db import Expando
 from google.appengine.ext import db
 
-class Location(Model):
+class Location(Expando):
   name = db.StringProperty()
   strata_median_price = db.IntegerProperty()
   nonstrata_median_price = db.IntegerProperty()
+  percentRise = db.FloatProperty()
 
 """
 loc = Location()

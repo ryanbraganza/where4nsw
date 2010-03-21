@@ -10,14 +10,25 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
+
 class MainPage(webapp.RequestHandler):
+  def dev(self):
+    dev = True
+    if os.environ.get('SERVER_SOFTWARE','').startswith('Devel'):
+      dev = True
+    else:
+      dev = False
+    logging.info(os.environ.get('SERVER_SOFTWARE',''))
+    logging.info(dev)
+    return dev
   def get(self):
 
     url = None
     url_linktext = None
     template_values = {
-        'title': 'Welcome',
+        'title': 'Where 4 NSW',
         'url': url,
+        'dev': self.dev(),
         'map': True,
         'url_linktext': url_linktext,
         }

@@ -1,44 +1,69 @@
-{% extends "templates/default.html" %}
-{% block content %}
+{% extends "templates/default.html" %} {% block content %}
 
-<div id="a">
+<div id="instructions_main">
+  <div class="bar"><span class="clickable">Instructions</span></div>
+  <div id="instructions" class="bucket">
+    Enter some search criteria to get some suggestions for where to live.
+  </div>
+
+</div>
+<div id="search_main">
   <div id="ai" class="bar"><span class="clickable">Search</span></div>
   <div id="searchForm" class="bucket">
     <form>
       <label for="minPrice">minimum price ('000)</label>
-        <input id="minPrice" type="text" />
+        <input id="minPrice" type="text" value="0"/>
       <label for="maxPrice">maximum price ('000)</label>
-        <input id="maxPrice" type="text" />
+        <input id="maxPrice" type="text" value="300"/>
       <input type="submit" id="search" value="Search" />
     </form>
   </div>
 </div>
-<div id="b">
+<div id="results_main">
   <div id="bi" class="bar"><span class="clickable">Results</span></div>
-  <div id="bii" class="bucket">Results will appear here</div>
+  <div id="results" class="bucket">Results will appear here</div>
 </div>
-<div>
+<div id="map_main">
   <div id='mapi' class="bar"><span class="clickable">Map</span></div>
-  <div id="map_canvas" class="bucket" style="width: 100%; height: 400px"></div>
+  <div id="map" class="bucket" style="width: 100%; height: 400px"></div>
+</div>
   
 <script type="text/javascript">
+function log(text){
+  if (typeof console != "undefined" && typeof console.log != "undefined"){
+    console.log(text);
+  }
+}
 $(document).ready(
 function(){
   initialize();//gmaps initialize
   $('.bucket').hide();
-  $('#map_canvas').show();
   $('.bar').click(function(){
     $(this).next('.bucket').toggle('slow');
   });
   $('#searchForm').show();
+  $('#results_main').hide();
+  $('#map_main').hide();
+  $('#instructions').show();
+  $("#results").show();
 
   var geocoder = new GClientGeocoder();
   function showAddress(addr){
+    log('showing: ' + addr);
     function callback(point){
       if (!point){
-        alert('sorry, not found');
       } else {
-        alert('found ' + addr);
+        if (typeof marker != "undefined"){
+          map.removeOverlay(marker);
+        }
+        marker = new GMarker(point);
+          var html = "<div>" + addr + "</div>";
+//        GEvent.addListener(marker, "click", function() {
+//          var html = "<div>showing: " + addr + "</div>";
+//          marker.openInfoWindowHtml(html);
+//        });
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml(html);
         map.setCenter(point, 13);
       }
     }
@@ -46,13 +71,35 @@ function(){
   }
   
   function successFunc(data){
+    $('#results_main').show();
+    $('#map_main').show();
     data = JSON.parse(data)
-    if (data.length>0)
+    place = data[0]
+    if (data.length > 0)
     {
-      showAddress(data[0] + ', NSW');
+      showAddress(place.name + ', NSW');
+      $('#map').show('fast');
     }
-    alert(data);
+    var show = '<ul>';
+    for (var i=0; i < data.length; i++)
+    {
+      var showOnMap = '<span class="clickable" id="'+data[i].name+'">' + data[i].name + '</span>';
+      jQuery('#'+data[i].name).live('click',function(){
+        log('clicked: ' + $(this));
+        showAddress($(this).attr('id') + ', NSW');
+      });
+      show += '<li>' + data[i].name;
+      show += ' price: $' + data[i].price*1000;
+      show += '<a href="' + data[i].url + '">' + 'website</a>';
+      show += showOnMap;
+    }
+    show += '</ul>';
+    log(show);
+    
+    $('#results').html(show);
+    $('#results').show('slow');
   }
+
   function ajaxSubmit(){
     var data = {};
     var url = '/ajaxSearch';
@@ -66,6 +113,7 @@ function(){
     return true; //TODO
   }
   $('#searchForm').submit(function(){
+    $('#instructions').hide('slow');
     if (validate()) {
       ajaxSubmit();
     } else {
