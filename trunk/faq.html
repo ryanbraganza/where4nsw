@@ -1,63 +1,72 @@
 {% extends "templates/default.html" %}
 {% block content %}
 
-<div id="a" style="padding-bottom: 1px;">
-  <div id="ai" class="bar"><span>Frequenly Asked Questions</span></div>
+<div style="padding-bottom: 1px;">
+  <div id="ai" class="bar" style="cursor:default"><span>Frequenly Asked Questions</span></div>
   <div id="aii" class="bucket">
     <ol>
       <li>
         <div class="question">When was this built?</div>
         <div class="answer">
-          This application was built in March 2010 for submission in the apps4NSW competition.
+          This application was built in a couple of weeks in March 2010 for submission in the <a href="http://www.information.nsw.gov.au/apps4nsw">apps4nsw competition</a>.
       </li>
       <li>
         <span class="question">What is this used for?</span> 
-        <div class="answer"> Where4NSW is a web-application for finding areas you might want to live.
-            You can find areas by population, climate, fire danger and much more!
+        <div class="answer">
+          Where4NSW helps you discover parts of NSW where you might want to live that you haven't considered before.
+          It takes your price range into consideration and looks for areas that match your criteria.
         </div>
       </li>
       <li>
         <span class="question">What technologies are used?</span>
         <div class="answer">
-          jQuery is used for display/layout.
-          google project hosting is used for subversion repository
-          google app engine is used for deployment
+          <a href="http://jquery.com">jQuery</a> is used as the javascript library.
+          <a href="http://code.google.com/p/where4nsw/">Google Project Hosting</a>
+          is used for hosting (using <a href="http://subversion.tigris.org/">subversion</a>)
+          <a href="http://code.google.com/appengine/">Google App Engine</a> is used for deployment.
+          <a href="http://code.google.com/apis/maps/">Google Maps</a> is used for the mapping capabilities.
         </div>
       </li>
       <li>
-        <span class="question">What license?</span>
+        <span class="question">What license are you using?</span>
         <div class="answer">
-          GPL version 3
+          The code for this website is hosted <a href="http://code.google.com/p/where4nsw/">here</a> and is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL version 3</a>
         </div>
       </li>
       <li>
         <div class="question">What is the need being served?</div>
         <div class="answer">
-          finding suitable neighbourhoods to live
+          Showcasing areas of New South Wales to more people
         </div>
       </li>
       <li>
         <div class="question">What is the motivation behind the user interface design?</div>
         <div class="answer">
-          The application is designed using standards-compliant HTML/CSS for accessibility.
-          All of the functionality is on one page, so navigation is not a problem.
-          No frustrating signup is required.
+          The application is build as a webapp to allow the widest audience to use it.  Nearly every computer and mobile phone has a web browser.
+          All of the functionality is presented on one page to keep it simple.
+          No frustrating signup is required - just use the site straight away.
         </div>
       </li>
       <li><div class="question">What data sources were used?</div>
         <div class="answer">
           <ul>
             <li><a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1338.1Dec%202009?OpenDocument">NSW state and regional indicators (housing)</a></li>
-            <li><a href="http://www.rfs.nsw.gov.au/feeds/majorIncidents.xml">fire incidents</a></li>
           </ul>
         </div>
       </li>
-      <li><div class="question">Does it scale?</div></li>
-      <li><div class="question">Is it original?</div></li>
-      <li><div class="question">Is it extensible/reusable?</div></li>
-      <li><div class="question">Is it extensible/reusable?</div>
+      <li><div class="question">Does it scale?</div>
         <div class="answer">
-          In the spirit of openness, the code is open-sourced under the GNU Public License version 3.  The source is available at ""
+          The functionality of the site is read-only so there should be few problems.
+        </div>
+      </li>
+      <li><div class="question">Can I reuse some of the code?</div></li>
+        <div class="answer">
+          In the spirit of openness, the code is open-sourced under the GNU Public License version 3 and available <a href="http://code.google.com/p/where4nsw/">here</a>
+        </div>
+      </li>
+      <li><div class="question">I'm thinking of a feature... could you add it to the site?</div>
+        <div class="answer">
+          There is plenty of room for inclusion of more search criteria -- things like what size of house you might be interested in, and general information about the areas.  Since the code is open-sourced, you may want to contribute the feature yourself!
         </div>
       </li>
     </ol>
@@ -74,5 +83,3 @@ $(document).ready(function(){
   
 {% endblock %}
 
-<!-- http://www.lawlink.nsw.gov.au/lawlink/bocsar/ll_bocsar.nsf/pages/bocsar_onlinequeries -->
-<!-- http://www.parliament.nsw.gov.au/resources/nswelectionsanalysis/2007/DistrictList.htm -->

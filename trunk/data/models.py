@@ -6,6 +6,7 @@ from google.appengine.ext import db
 
 class Location(Expando):
   name = db.StringProperty()
+  url = db.StringProperty()
   strata_median_price = db.IntegerProperty()
   nonstrata_median_price = db.IntegerProperty()
   percentRise = db.FloatProperty()
