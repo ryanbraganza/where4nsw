@@ -91,8 +91,8 @@ function(){
         log('clicked: ' + $(this));
         showAddress($(this).attr('id') + ', NSW');
       });
-      show += '<li>' + '<span title="Show on map" class="clickable" id="' + name+'">' + name + '</span';
-      show += ' price: $' + data[i].price*1000;
+      show += '<li>' + '<span title="Show on map" class="clickable" id="' + name+'">' + name + '</span>';
+      show += ' ($' + data[i].price*1000 + ')';
       show += '<a href="' + data[i].url + '">' + ' Visit the website</a>';
     }
     show += '</ul>';
@@ -112,6 +112,7 @@ function(){
     var html = 'You searched for Local Government Areas with '
       + 'a minimum price of $' + minPrice + ',000 '
       + 'and a maximum price of $' + maxPrice + ',000.';
+    html += '<br/>Note: price refers to median non-strata house price.  For more details, see the <a href="/faq.html">FAQ</a>';
     $('#results_info').html(html);
     $.get(url, JSON.stringify(data), successFunc);
   }
